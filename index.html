@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard de Rendimiento — Influencer & Afiliación</title>
+  <!-- Tailwind CSS v4 — CDN oficial (@tailwindcss/browser@4, NO cdn.tailwindcss.com) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="text-gray-100 min-h-screen">
+
+  <!-- ===== HEADER / NAV ===== -->
+  <header class="glass border-b border-white/5 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-white text-lg shadow-lg shadow-violet-500/25">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div>
+          <h1 class="text-lg sm:text-xl font-bold tracking-tight">Dashboard de Rendimiento</h1>
+          <p class="text-xs text-gray-400">Influencer & Afiliación · Octubre 2026</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 text-sm">
+        <span class="hidden sm:flex items-center gap-1 text-amber-300"><span class="w-2 h-2 rounded-full bg-amber-300"></span> Datos simulados</span>
+        <span class="text-gray-400">|</span>
+        <span class="text-gray-400"><i class="far fa-calendar mr-1"></i> Oct 2026</span>
+        <button class="ml-2 px-3 py-1.5 rounded-lg bg-violet-600/20 text-violet-300 hover:bg-violet-600/30 border border-violet-500/20 text-xs font-medium transition">
+          <i class="fas fa-download mr-1"></i> Exportar
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+
+    <!-- ============================================================ -->
+    <!-- BLOQUE SUPERIOR — KPIs PRINCIPALES (Visión Ejecutiva)        -->
+    <!-- ============================================================ -->
+    <section id="bloque-superior">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-1 h-6 bg-violet-500 rounded-full"></span>
+        <h2 class="text-lg font-semibold text-white">KPIs Principales</h2>
+        <span class="text-xs text-gray-500 ml-1">· Visión Ejecutiva</span>
+      </div>
+
+      <!-- Fila 1: Volumen + Ingresos -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-4">
+        <!-- Ventas Totales -->
+        <div class="glass-card rounded-xl p-4">
+          <div class="flex items-start justify-between mb-2">
+            <p class="text-xs text-gray-400 font-medium uppercase tracking-wider">Ventas Totales</p>
+            <span class="w-7 h-7 rounded-lg bg-blue-500/15 flex items-center justify-center text-blue-400 text-xs"><i class="fas fa-shopping-cart"></i></span>
+          </div>
+          <p class="kpi-value font-bold text-white" id="ventas-totales">—</p>
+          <p class="text-xs text-emerald-400 mt-1" data-kpi-comparison="ventasTotales" hidden><i class="fas fa-arrow-up mr-1"></i> <span id="ventas-change">—</span> vs mes ant.</p>
+        </div>
+
+        <!-- Inscripciones -->
+        <div class="glass-card rounded-xl p-4">
+          <div class="flex items-start justify-between mb-2">
+            <p class="text-xs text-gray-400 font-medium uppercase tracking-wider">Inscripciones</p>
+            <span class="w-7 h-7 rounded-lg bg-emerald-500/15 flex items-center justify-center text-emerald-400 text-xs"><i class="fas fa-user-plus"></i></span>
+          </div>
+          <p class="kpi-value font-bold text-white" id="inscripciones">—</p>
+          <p class="text-xs text-emerald-400 mt-1" data-kpi-comparison="inscripciones" hidden><i class="fas fa-arrow-up mr-1"></i> <span id="inscripciones-change">—</span> vs mes ant.</p>
+        </div>
+
+        <!-- Usuarios Activos -->
+        <div class="glass-card rounded-xl p-4">
+          <div class="flex items-start justify-between mb-2">
+            <p class="text-xs text-gray-400 font-medium uppercase tracking-wider">Usuarios Activos</p>
+            <span class="w-7 h-7 rounded-lg bg-amber-500/15 flex items-center justify-center text-amber-400 text-xs"><i class="fas fa-users"></i></span>
+          </div>
+          <p class="kpi-value font-bold text-white" id="usuarios-activos">—</p>
+          <p class="text-xs text-amber-400 mt-1" data-kpi-comparison="usuariosActivos" hidden><i class="fas fa-minus mr-1"></i> <span id="activos-change">—</span> vs mes ant.</p>
+        </div>
+
+        <!-- Impresiones -->
+        <div class="glass-card rounded-xl p-4">
+          <div class="flex items-start justify-between mb-2">
+            <p class="text-xs text-gray-400 font-medium uppercase tracking-wider">Impresiones</p>
+            <span class="w-7 h-7 rounded-lg bg-cyan-500/15 flex items-center justify-center text-cyan-400 text-xs"><i class="fas fa-eye"></i></span>
+          </div>
+          <p class="kpi-value font-bold text-white" id="impresiones">—</p>
+          <p class="text-xs text-emerald-400 mt-1" data-kpi-comparison="impresiones" hidden><i class="fas fa-arrow-up mr-1"></i> <span id="impresiones-change">—</span> vs mes ant.</p>
+        </div>
+      </div>
+
+      <!-- Fila 2: Ingresos + Engagement + Eficiencia -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+        <!-- Revenue (Comisiones Acumuladas) -->
+        <div class="glass-card rounded-xl p-4">
+          <div class="flex items-start justify-between mb-2">
+            <p class="text-xs text-gray-400 font-medium uppercase tracking-wider">Revenue (Comisiones)</p>
+            <span class="w-7 h-7 rounded-lg bg-violet-500/15 flex items-center justify-center text-violet-400 text-xs"><i class="fas fa-coins"></i></span>
+          </div>
+          <p class="kpi-value font-bold text-white" id="revenue">—</p>
+          <p class="text-xs text-gray-400 mt-1" id="ventas-brutas">Ventas brutas: —</p>
+          <p class="text-xs text-emerald-400 mt-1" data-kpi-comparison="revenue" hidden><i class="fas fa-arrow-up mr-1"></i> <span id="revenue-change">—</span> vs mes ant.</p>
+        </div>
+
+        <!-- Ticket Medio -->
+        <div class="glass-card rounded-xl p-4">
+          <div class="flex items-start justify-between mb-2">
+            <p class="text-xs text-gray-400 font-medium uppercase tracking-wider">Ticket Medio</p>
+            <span class="w-7 h-7 rounded-lg bg-pink-500/15 flex items-center justify-center text-pink-400 text-xs"><i class="fas fa-receipt"></i></span>
+          </div>
+          <p class="kpi-value font-bold text-white" id="ticket-medio">—</p>
+          <p class="text-xs text-amber-400 mt-1" data-kpi-comparison="ticketMedio" hidden><i class="fas fa-minus mr-1"></i> <span id="ticket-change">—</span> vs mes ant.</p>
+        </div>
+
+        <!-- Tasa de Engagement Global -->
+        <div class="glass-card rounded-xl p-4">
+          <div class="flex items-start justify-between mb-2">
+            <p class="text-xs text-gray-400 font-medium uppercase tracking-wider">Engagement Global</p>
+            <span class="w-7 h-7 rounded-lg bg-rose-500/15 flex items-center justify-center text-rose-400 text-xs"><i class="fas fa-heart"></i></span>
+          </div>
+          <p class="kpi-value font-bold text-white" id="engagement">—</p>
+          <p class="text-xs text-emerald-400 mt-1" data-kpi-comparison="engagement" hidden><i class="fas fa-arrow-up mr-1"></i> <span id="engagement-change">—</span> vs mes ant.</p>
+        </div>
+
+        <!-- CTR Global -->
+        <div class="glass-card rounded-xl p-4">
+          <div class="flex items-start justify-between mb-2">
+            <p class="text-xs text-gray-400 font-medium uppercase tracking-wider">CTR Global</p>
+            <span class="w-7 h-7 rounded-lg bg-indigo-500/15 flex items-center justify-center text-indigo-400 text-xs"><i class="fas fa-mouse-pointer"></i></span>
+          </div>
+          <p class="kpi-value font-bold text-white" id="ctr">—</p>
+          <p class="text-xs text-red-400 mt-1" data-kpi-comparison="ctr" hidden><i class="fas fa-arrow-down mr-1"></i> <span id="ctr-change">—</span> vs mes ant.</p>
+        </div>
+      </div>
+
+      <!-- Fila 3: Más KPIs (Conversión, Costes, Retorno) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mt-4">
+        <!-- Tasa de Conversión Global -->
+        <div class="glass-card rounded-xl p-4">
+          <div class="flex items-start justify-between mb-2">
+            <p class="text-xs text-gray-400 font-medium uppercase tracking-wider">Tasa Conversión</p>
+            <span class="w-7 h-7 rounded-lg bg-green-500/15 flex items-center justify-center text-green-400 text-xs"><i class="fas fa-percentage"></i></span>
+          </div>
+          <p class="kpi-value font-bold text-white" id="tasa-conversion">—</p>
+          <p class="text-xs text-emerald-400 mt-1" data-kpi-comparison="conversion" hidden><i class="fas fa-arrow-up mr-1"></i> <span id="conversion-change">—</span> vs mes ant.</p>
+        </div>
+
+        <!-- Interacciones Totales -->
+        <div class="glass-card rounded-xl p-4">
+          <div class="flex items-start justify-between mb-2">
+            <p class="text-xs text-gray-400 font-medium uppercase tracking-wider">Interacciones Totales</p>
+            <span class="w-7 h-7 rounded-lg bg-orange-500/15 flex items-center justify-center text-orange-400 text-xs"><i class="fas fa-comments"></i></span>
+          </div>
+          <p class="kpi-value font-bold text-white" id="interacciones">—</p>
+          <p class="text-xs text-emerald-400 mt-1" data-kpi-comparison="interacciones" hidden><i class="fas fa-arrow-up mr-1"></i> <span id="interacciones-change">—</span> vs mes ant.</p>
+        </div>
+
+        <!-- Retorno por Plataforma (ROI) -->
+        <div class="glass-card rounded-xl p-4">
+          <div class="flex items-start justify-between mb-2">
+            <p class="text-xs text-gray-400 font-medium uppercase tracking-wider">ROI Global</p>
+            <span class="w-7 h-7 rounded-lg bg-teal-500/15 flex items-center justify-center text-teal-400 text-xs"><i class="fas fa-chart-pie"></i></span>
+          </div>
+          <p class="kpi-value font-bold text-white" id="roi">—</p>
+          <p class="text-xs text-emerald-400 mt-1" data-kpi-comparison="roi" hidden><i class="fas fa-arrow-up mr-1"></i> <span id="roi-change">—</span> vs mes ant.</p>
+        </div>
+
+        <!-- Coste por Resultado -->
+        <div class="glass-card rounded-xl p-4">
+          <div class="flex items-start justify-between mb-2">
+            <p class="text-xs text-gray-400 font-medium uppercase tracking-wider">Coste por venta completada</p>
+            <span class="w-7 h-7 rounded-lg bg-red-500/15 flex items-center justify-center text-red-400 text-xs"><i class="fas fa-coins"></i></span>
+          </div>
+          <p class="kpi-value font-bold text-white" id="coste-resultado">—</p>
+          <p class="text-xs text-emerald-400 mt-1" data-kpi-comparison="costeResultado" hidden><i class="fas fa-arrow-down mr-1"></i> <span id="coste-change">—</span> vs mes ant.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BLOQUE INTERMEDIO — DRIVERS DEL RESULTADO (Diagnóstico)      -->
+    <!-- ============================================================ -->
+    <section id="bloque-intermedio">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-1 h-6 bg-fuchsia-500 rounded-full"></span>
+        <h2 class="text-lg font-semibold text-white">Drivers del Resultado</h2>
+        <span class="text-xs text-gray-500 ml-1">· Factores de Diagnóstico</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+        <!-- FUNNEL DE CONVERSIÓN -->
+        <div class="glass-card rounded-xl p-5">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-semibold text-white"><i class="fas fa-filter text-fuchsia-400 mr-2"></i> Funnel de Conversión</h3>
+            <span class="text-xs text-gray-500" id="funnel-periodo">Período seleccionado</span>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-gray-400">👁️ Alcance</span>
+                <span class="text-white font-medium" id="funnel-alcance">—</span>
+              </div>
+              <div class="progress-bar"><div class="progress-fill bg-gradient-to-r from-blue-500 to-blue-400" id="bar-alcance" style="width:100%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-gray-400">🖱️ Clics en links</span>
+                <span class="text-white font-medium" id="funnel-clics">—</span>
+              </div>
+              <div class="progress-bar"><div class="progress-fill bg-gradient-to-r from-violet-500 to-violet-400" id="bar-clics" style="width:0%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-gray-400">🛒 Ventas</span>
+                <span class="text-white font-medium" id="funnel-ventas">—</span>
+              </div>
+              <div class="progress-bar"><div class="progress-fill bg-gradient-to-r from-emerald-500 to-emerald-400" id="bar-ventas" style="width:0%"></div></div>
+            </div>
+            <div class="grid grid-cols-2 gap-3 pt-2 border-t border-white/5">
+              <div class="text-center">
+                <p class="text-xs text-gray-400">Tasa Alcance → Clics</p>
+                <p class="text-sm font-bold text-violet-300" id="tasa-clics">—</p>
+              </div>
+              <div class="text-center">
+                <p class="text-xs text-gray-400">Tasa Clics → Ventas</p>
+                <p class="text-sm font-bold text-emerald-300" id="tasa-ventas">—</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RENDIMIENTO POR PLATAFORMA (comparativa) -->
+        <div class="glass-card rounded-xl p-5">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-semibold text-white"><i class="fas fa-globe text-fuchsia-400 mr-2"></i> Rendimiento por Plataforma</h3>
+            <span class="text-xs text-gray-500">Volumen vs Ingresos</span>
+          </div>
+          <div class="space-y-4" id="plataformas-container">
+            <!-- Se rellena con JS -->
+          </div>
+          <p class="mt-3 text-xs text-gray-400" id="atribucion-desconocida"></p>
+          <div class="mt-4 pt-3 border-t border-white/5">
+            <div class="grid grid-cols-3 gap-2 text-center text-xs">
+              <div>
+                <p class="text-gray-400">Plataforma TOP</p>
+                <p class="text-sm font-bold text-amber-300" id="plataforma-top">—</p>
+              </div>
+              <div>
+                <p class="text-gray-400">Volumen total</p>
+                <p class="text-sm font-bold text-white" id="volumen-total-plat">—</p>
+              </div>
+              <div>
+                <p class="text-gray-400">Ingresos totales</p>
+                <p class="text-sm font-bold text-emerald-300" id="ingresos-totales-plat">—</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Segunda fila del bloque intermedio -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <!-- RENDIMIENTO POR PRODUCTO -->
+        <div class="glass-card rounded-xl p-5">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-semibold text-white"><i class="fas fa-box text-fuchsia-400 mr-2"></i> Rendimiento por Producto</h3>
+            <span class="text-xs text-gray-500">Comisiones & Conversión</span>
+          </div>
+          <div class="space-y-3" id="productos-container">
+            <!-- Se rellena con JS -->
+          </div>
+        </div>
+
+        <!-- ACTIVIDAD vs ENGAGEMENT -->
+        <div class="glass-card rounded-xl p-5">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-semibold text-white"><i class="fas fa-chart-bar text-fuchsia-400 mr-2"></i> Actividad vs. Engagement</h3>
+            <span class="text-xs text-gray-500">Publicaciones vs Interacciones</span>
+          </div>
+          <div class="space-y-3" id="actividad-container">
+            <!-- Se rellena con JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BLOQUE INFERIOR — DETALLES OPERATIVOS Y ALERTAS              -->
+    <!-- ============================================================ -->
+    <section id="bloque-inferior">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-1 h-6 bg-amber-500 rounded-full"></span>
+        <h2 class="text-lg font-semibold text-white">Detalles Operativos y Alertas</h2>
+        <span class="text-xs text-gray-500 ml-1">· Toma de Decisiones</span>
+      </div>
+
+      <!-- TABS para tablas -->
+      <div class="glass-card rounded-xl p-5 mb-4">
+        <div class="flex border-b border-white/5 mb-4 overflow-x-auto" role="tablist" aria-label="Tablas de detalle">
+          <button type="button" role="tab" id="tab-productos" aria-controls="productos-tab" aria-selected="true" tabindex="0" class="tab-btn tab-active px-4 py-2 text-sm font-medium text-white whitespace-nowrap" data-tab="productos-tab">📦 Productos</button>
+          <button type="button" role="tab" id="tab-plataformas" aria-controls="plataformas-tab" aria-selected="false" tabindex="-1" class="tab-btn px-4 py-2 text-sm font-medium text-gray-400 hover:text-white whitespace-nowrap" data-tab="plataformas-tab">🌐 Plataformas</button>
+          <button type="button" role="tab" id="tab-campanas" aria-controls="campanas-tab" aria-selected="false" tabindex="-1" class="tab-btn px-4 py-2 text-sm font-medium text-gray-400 hover:text-white whitespace-nowrap" data-tab="campanas-tab">📢 Campañas</button>
+        </div>
+
+        <!-- TABLA PRODUCTOS -->
+        <div id="productos-tab" class="tab-content overflow-x-auto" role="tabpanel" aria-labelledby="tab-productos" tabindex="0">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="text-gray-400 text-xs uppercase tracking-wider border-b border-white/5">
+                <th class="text-left py-2 pr-2">Producto</th>
+                <th class="text-right px-2">Precio</th>
+                <th class="text-right px-2">Comisión unitaria (15%)</th>
+                <th class="text-right px-2">Conversiones</th>
+                <th class="text-right px-2">Comisiones generadas</th>
+                <th class="text-right px-2">ROI</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-productos-body">
+              <!-- JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- TABLA PLATAFORMAS -->
+        <div id="plataformas-tab" class="tab-content hidden overflow-x-auto" role="tabpanel" aria-labelledby="tab-plataformas" tabindex="0">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="text-gray-400 text-xs uppercase tracking-wider border-b border-white/5">
+                <th class="text-left py-2 pr-2">Plataforma</th>
+                <th class="text-right px-2">Seguidores</th>
+                <th class="text-right px-2">Alcance</th>
+                <th class="text-right px-2">Engagement</th>
+                <th class="text-right px-2">Conversiones</th>
+                <th class="text-right px-2">¿TOP?</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-plataformas-body">
+              <!-- JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- TABLA CAMPAÑAS -->
+        <div id="campanas-tab" class="tab-content hidden overflow-x-auto" role="tabpanel" aria-labelledby="tab-campanas" tabindex="0">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="text-gray-400 text-xs uppercase tracking-wider border-b border-white/5">
+                <th class="text-left py-2 pr-2">Campaña</th>
+                <th class="text-left px-2">Fecha</th>
+                <th class="text-left px-2">Producto</th>
+                <th class="text-right px-2">Alcance</th>
+                <th class="text-right px-2">Conversiones</th>
+                <th class="text-right px-2">Rendimiento</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-campanas-body">
+              <!-- JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ALERTAS + LISTADOS RÁPIDOS -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <!-- SISTEMA DE ALERTAS -->
+        <div class="glass-card rounded-xl p-5">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-semibold text-white"><i class="fas fa-exclamation-triangle text-amber-400 mr-2"></i> Alertas Automáticas</h3>
+            <span class="badge bg-amber-500/15 text-amber-300 border border-amber-500/20" id="alertas-count">3 activas</span>
+          </div>
+          <div class="space-y-2" id="alertas-container">
+            <!-- JS -->
+          </div>
+        </div>
+
+        <!-- LISTADOS DE CONTROL RÁPIDOS -->
+        <div class="glass-card rounded-xl p-5">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-semibold text-white"><i class="fas fa-star text-amber-400 mr-2"></i> Listados de Control</h3>
+            <span class="text-xs text-gray-500">Rendimiento destacado</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <p class="text-xs text-gray-400 font-semibold uppercase tracking-wider">🏆 TOP Productos</p>
+                <label><span class="sr-only">Ordenar productos por</span><select id="orden-productos" class="bg-transparent text-xs text-gray-400 border border-white/10 rounded px-1 py-0.5"><option value="comisiones">Comisiones</option><option value="conversiones">Conversiones</option><option value="roi">ROI</option></select></label>
+              </div>
+              <ol class="text-sm space-y-1.5" id="top-productos">
+                <!-- JS -->
+              </ol>
+            </div>
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <p class="text-xs text-gray-400 font-semibold uppercase tracking-wider">🏆 TOP Plataformas</p>
+                <label><span class="sr-only">Ordenar plataformas por</span><select id="orden-plataformas" class="bg-transparent text-xs text-gray-400 border border-white/10 rounded px-1 py-0.5"><option value="comisiones">Comisiones</option><option value="alcance">Alcance</option><option value="conversiones">Conversiones</option><option value="roi">ROI</option></select></label>
+              </div>
+              <ol class="text-sm space-y-1.5" id="top-plataformas">
+                <!-- JS -->
+              </ol>
+            </div>
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <p class="text-xs text-gray-400 font-semibold uppercase tracking-wider">🏆 TOP Campañas</p>
+                <label><span class="sr-only">Ordenar campañas por</span><select id="orden-campanas" class="bg-transparent text-xs text-gray-400 border border-white/10 rounded px-1 py-0.5"><option value="conversiones">Conversiones</option><option value="alcance">Alcance</option><option value="comisiones">Comisiones</option></select></label>
+              </div>
+              <ol class="text-sm space-y-1.5" id="top-campanas">
+                <!-- JS -->
+              </ol>
+            </div>
+            <div>
+              <p class="text-xs text-gray-400 font-semibold uppercase tracking-wider mb-2">💡 Oportunidades de Mejora</p>
+              <ul class="text-sm space-y-1.5" id="oportunidades">
+                <!-- JS -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="border-t border-white/5 pt-6 pb-8 text-center text-xs text-gray-500">
+      <p>Dashboard de Rendimiento · Influencer & Afiliación · Datos simulados con fines demostrativos · Octubre 2026</p>
+      <p class="mt-1">Desarrollado con <i class="fas fa-heart text-red-400"></i> · HTML + Tailwind CSS v4 + JavaScript vanilla</p>
+    </footer>
+  </main>
+
+  <script>
+    // ================================================================
+    // DATOS SIMULADOS
+    // ================================================================
+    const DATA = {
+      estadoDatos: 'simulados',
+      tasaComision: 0.15,
+      periodo: {
+        id: '2026-10',
+        etiqueta: 'Octubre 2026',
+        inicio: '2026-10-01',
+        fin: '2026-10-31'
+      },
+      periodoAnterior: null,
+      ventasTotales: 847,
+      inscripciones: 2341,
+      usuariosActivos: 12890,
+      impresiones: 456000,
+      alcance: 456000,
+      interacciones: 28400,
+
+      productos: [
+        { nombre: 'Producto A', precio: 50, conversiones: 412, clics: 6500, ingresos: 3090, inversion: 1800, color: 'from-blue-500 to-blue-400' },
+        { nombre: 'Producto B', precio: 120, conversiones: 198, clics: 3300, ingresos: 3564, inversion: 2400, color: 'from-violet-500 to-violet-400' },
+        { nombre: 'Producto C', precio: 80, conversiones: 237, clics: 4792, ingresos: 2844, inversion: 1600, color: 'from-emerald-500 to-emerald-400' },
+      ],
+
+      plataformas: [
+        { nombre: 'Instagram', seguidores: 45800, alcance: 182000, engagement: 5.2, conversiones: 412, clics: 6200, ingresos: 4620, inversion: 2600, color: 'from-pink-500 to-rose-400', icono: 'fab fa-instagram' },
+        { nombre: 'TikTok', seguidores: 72300, alcance: 215000, engagement: 6.8, conversiones: 287, clics: 6500, ingresos: 3230, inversion: 2100, color: 'from-cyan-400 to-teal-400', icono: 'fab fa-tiktok' },
+        { nombre: 'YouTube', seguidores: 12400, alcance: 59000, engagement: 3.1, conversiones: 148, clics: 1892, ingresos: 1648, inversion: 1100, color: 'from-red-500 to-red-400', icono: 'fab fa-youtube' },
+      ],
+      atribucionDesconocida: { clics: 0, ventas: 0, comisiones: 0 },
+
+      campanas: [
+        { nombre: 'Lanzamiento Verano', fecha: '01/10/2026', producto: 'Producto B', alcance: 45000, conversiones: 82, rendimiento: 'Excelente' },
+        { nombre: 'Rutina Mañana', fecha: '05/10/2026', producto: 'Producto A', alcance: 52000, conversiones: 65, rendimiento: 'Excelente' },
+        { nombre: 'Edición Limitada', fecha: '10/10/2026', producto: 'Producto C', alcance: 38000, conversiones: 41, rendimiento: 'Bueno' },
+        { nombre: 'Colaboración X', fecha: '15/10/2026', producto: 'Producto B', alcance: 61000, conversiones: 73, rendimiento: 'Excelente' },
+        { nombre: 'Semana Ofertas', fecha: '18/10/2026', producto: 'Producto A', alcance: 29000, conversiones: 28, rendimiento: 'Regular' },
+        { nombre: 'Reto Viral', fecha: '20/10/2026', producto: 'Producto C', alcance: 72000, conversiones: 56, rendimiento: 'Bueno' },
+      ],
+
+      actividad: [
+        { tipo: 'Posts Feed', publicaciones: 12, interacciones: 8400, emoji: '📷' },
+        { tipo: 'Reels', publicaciones: 8, interacciones: 12600, emoji: '🎬' },
+        { tipo: 'Stories', publicaciones: 24, interacciones: 5200, emoji: '📱' },
+        { tipo: 'Videos YouTube', publicaciones: 4, interacciones: 2200, emoji: '🎥' },
+      ],
+
+      umbralesAlertas: {
+        caidaConversionPct: 20,
+        desviacionesPico: 2,
+        ventanaDias: 30
+      },
+      alertas: [
+        { tipo: 'warning', indicador: 'Tasa de conversión', entidad: 'TikTok', periodoComparado: 'Últimos 3 días vs. 3 días anteriores', mensaje: 'Caída del 23% en conversión en TikTok en los últimos 3 días', icono: 'fa-arrow-down', color: 'text-amber-400' },
+        { tipo: 'danger', indicador: 'Clics sin ventas', entidad: 'Campaña Semana Ofertas', periodoComparado: 'Período de campaña vs. media móvil de 30 días', mensaje: 'Pico atípico de clics sin conversión en campaña "Semana Ofertas"', icono: 'fa-bolt', color: 'text-red-400' },
+        { tipo: 'info', indicador: 'Comisiones generadas', entidad: 'Producto B', periodoComparado: 'Semana actual vs. semana anterior', mensaje: 'Producto B alcanzó máximo histórico de comisiones esta semana', icono: 'fa-trophy', color: 'text-emerald-400' },
+      ]
+    };
+
+    // ================================================================
+    // FUNCIONES DE RENDER
+    // ================================================================
+
+    // Formateo de números
+    const fmt = (n) => n.toLocaleString('es-ES');
+    const fmtEur = (n) => n.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
+    const fmtPct = (n) => n.toFixed(1) + '%';
+    const comisionUnitaria = (producto) => producto.precio * DATA.tasaComision;
+    const comisionesProducto = (producto) => comisionUnitaria(producto) * producto.conversiones;
+    const calcularROI = (ingresos, costes) => Number.isFinite(costes) && costes > 0 ? ingresos / costes : null;
+    const fmtROI = (ingresos, costes, decimales = 1) => {
+      const roi = calcularROI(ingresos, costes);
+      return roi === null ? 'No disponible' : `${roi.toFixed(decimales)}x`;
+    };
+
+    // --- KPIs ---
+    function renderKPIs() {
+      const comisiones = DATA.productos.reduce((total, producto) => total + comisionesProducto(producto), 0);
+      const ventasBrutas = DATA.productos.reduce((total, producto) => total + producto.precio * producto.conversiones, 0);
+      const costes = DATA.plataformas.every(plataforma => Number.isFinite(plataforma.inversion))
+        ? DATA.plataformas.reduce((total, plataforma) => total + plataforma.inversion, 0)
+        : null;
+      const alcance = DATA.plataformas.reduce((total, plataforma) => total + plataforma.alcance, 0);
+      const clics = DATA.plataformas.reduce((total, plataforma) => total + plataforma.clics, 0);
+      const interacciones = DATA.actividad.reduce((total, formato) => total + formato.interacciones, 0);
+      document.getElementById('ventas-totales').textContent = fmt(DATA.ventasTotales);
+      document.getElementById('inscripciones').textContent = fmt(DATA.inscripciones);
+      document.getElementById('usuarios-activos').textContent = fmt(DATA.usuariosActivos);
+      document.getElementById('impresiones').textContent = fmt(DATA.impresiones);
+      document.getElementById('revenue').textContent = fmtEur(comisiones);
+      document.getElementById('ventas-brutas').textContent = `Ventas brutas: ${fmtEur(ventasBrutas)}`;
+      document.getElementById('ticket-medio').textContent = fmtEur(ventasBrutas / DATA.ventasTotales);
+      document.getElementById('engagement').textContent = fmtPct(interacciones / alcance * 100);
+      document.getElementById('ctr').textContent = fmtPct(clics / DATA.impresiones * 100);
+      document.getElementById('tasa-conversion').textContent = fmtPct(DATA.ventasTotales / alcance * 100);
+      document.getElementById('interacciones').textContent = fmt(interacciones);
+      document.getElementById('roi').textContent = fmtROI(comisiones, costes, 2);
+      document.getElementById('coste-resultado').textContent = costes === null ? 'No disponible' : fmtEur(costes / DATA.ventasTotales);
+    }
+
+    function renderComparaciones() {
+      if (!DATA.periodoAnterior) return;
+
+      const ventasBrutas = DATA.productos.reduce((total, producto) => total + producto.precio * producto.conversiones, 0);
+      const comisiones = DATA.productos.reduce((total, producto) => total + comisionesProducto(producto), 0);
+      const alcance = DATA.plataformas.reduce((total, plataforma) => total + plataforma.alcance, 0);
+      const clics = DATA.plataformas.reduce((total, plataforma) => total + plataforma.clics, 0);
+      const interacciones = DATA.actividad.reduce((total, formato) => total + formato.interacciones, 0);
+      const costesConocidos = DATA.plataformas.every(plataforma => Number.isFinite(plataforma.inversion));
+      const costes = costesConocidos
+        ? DATA.plataformas.reduce((total, plataforma) => total + plataforma.inversion, 0)
+        : null;
+      const actual = {
+        ventasTotales: DATA.ventasTotales,
+        inscripciones: DATA.inscripciones,
+        usuariosActivos: DATA.usuariosActivos,
+        impresiones: DATA.impresiones,
+        revenue: comisiones,
+        ticketMedio: ventasBrutas / DATA.ventasTotales,
+        engagement: interacciones / alcance * 100,
+        ctr: clics / DATA.impresiones * 100,
+        conversion: DATA.ventasTotales / alcance * 100,
+        interacciones,
+        roi: calcularROI(comisiones, costes),
+        costeResultado: costes === null ? null : costes / DATA.ventasTotales
+      };
+
+      document.querySelectorAll('[data-kpi-comparison]').forEach(fila => {
+        const clave = fila.dataset.kpiComparison;
+        const anterior = DATA.periodoAnterior[clave];
+        const valorActual = actual[clave];
+        if (!Number.isFinite(anterior) || anterior === 0 || !Number.isFinite(valorActual)) return;
+
+        const variacion = (valorActual - anterior) / Math.abs(anterior) * 100;
+        const variacionRedondeada = Number(variacion.toFixed(1));
+        const esNeutra = variacionRedondeada === 0;
+        const mejora = clave === 'costeResultado' ? variacionRedondeada < 0 : variacionRedondeada > 0;
+        const estado = esNeutra ? 'Neutra' : mejora ? 'Positiva' : 'Negativa';
+        const color = esNeutra ? 'text-gray-400' : mejora ? 'text-emerald-400' : 'text-red-400';
+        const icono = esNeutra ? 'fa-minus' : mejora ? 'fa-arrow-up' : 'fa-arrow-down';
+        fila.classList.remove('text-emerald-400', 'text-amber-400', 'text-red-400', 'text-gray-400');
+        fila.classList.add(color);
+        fila.querySelector('i').className = `fas ${icono} mr-1`;
+        fila.querySelector('i').setAttribute('aria-hidden', 'true');
+        fila.querySelector('span').textContent = `${variacionRedondeada > 0 ? '+' : ''}${fmtPct(variacionRedondeada)} · ${estado}`;
+        fila.hidden = false;
+      });
+    }
+
+    // --- Funnel ---
+    function renderFunnel() {
+      const alcance = DATA.plataformas.reduce((total, plataforma) => total + plataforma.alcance, 0);
+      const clics = DATA.plataformas.reduce((total, plataforma) => total + plataforma.clics, 0);
+      const ventas = DATA.ventasTotales;
+      document.getElementById('funnel-periodo').textContent = DATA.periodo.etiqueta;
+      document.getElementById('funnel-alcance').textContent = fmt(alcance);
+      document.getElementById('funnel-clics').textContent = fmt(clics);
+      document.getElementById('funnel-ventas').textContent = fmt(ventas);
+      const tasaClics = (clics / alcance * 100);
+      const tasaVentas = (ventas / clics * 100);
+      document.getElementById('tasa-clics').textContent = fmtPct(tasaClics);
+      document.getElementById('tasa-ventas').textContent = fmtPct(tasaVentas);
+      setTimeout(() => {
+        document.getElementById('bar-clics').style.width = (clics / alcance * 100) + '%';
+        document.getElementById('bar-ventas').style.width = (ventas / alcance * 100) + '%';
+      }, 200);
+    }
+
+    // --- Plataformas ---
+    function renderPlataformas() {
+      const container = document.getElementById('plataformas-container');
+      const maxAlcance = Math.max(...DATA.plataformas.map(p => p.alcance));
+      container.innerHTML = DATA.plataformas.map(p => {
+        const pct = (p.alcance / maxAlcance * 100);
+        return `
+          <div>
+            <div class="flex items-center justify-between text-xs mb-1">
+              <span class="flex items-center gap-1.5">
+                <i class="${p.icono} ${p.color.split(' ')[0].replace('from-', 'text-')}"></i>
+                <span class="text-gray-200 font-medium">${p.nombre}</span>
+              </span>
+              <span class="text-white font-medium">${fmt(p.alcance)} alcance · ${fmtEur(p.ingresos)}</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill bg-gradient-to-r ${p.color}" style="width:${pct}%"></div>
+            </div>
+            <div class="flex justify-between text-xs text-gray-500 mt-0.5">
+              <span>${fmt(p.seguidores)} seguidores</span>
+              <span>Eng: ${p.engagement.toFixed(1)}% · ${p.conversiones} conv. · ROI ${fmtROI(p.ingresos, p.inversion, 2)}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+      const datosSinAtribuir = DATA.atribucionDesconocida;
+      document.getElementById('atribucion-desconocida').textContent =
+        `Sin atribución: ${fmt(datosSinAtribuir.clics)} clics · ${fmt(datosSinAtribuir.ventas)} ventas · ${fmtEur(datosSinAtribuir.comisiones)} en comisiones`;
+
+      const top = DATA.plataformas.reduce((a, b) => a.ingresos > b.ingresos ? a : b);
+      document.getElementById('plataforma-top').textContent = top.nombre;
+      document.getElementById('volumen-total-plat').textContent = fmt(DATA.plataformas.reduce((s, p) => s + p.alcance, 0));
+      document.getElementById('ingresos-totales-plat').textContent = fmtEur(DATA.plataformas.reduce((s, p) => s + p.ingresos, 0));
+    }
+
+    // --- Productos ---
+    function renderProductos() {
+      const container = document.getElementById('productos-container');
+      const maxConv = Math.max(...DATA.productos.map(p => p.conversiones));
+      container.innerHTML = DATA.productos.map(p => {
+        const pct = (p.conversiones / maxConv * 100);
+        return `
+          <div>
+            <div class="flex items-center justify-between text-xs mb-1">
+              <span class="text-gray-200 font-medium">${p.nombre}</span>
+              <span class="text-white font-medium">${fmtEur(p.ingresos)} · ${p.conversiones} conv.</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill bg-gradient-to-r ${p.color}" style="width:${pct}%"></div>
+            </div>
+            <div class="flex justify-between text-xs text-gray-500 mt-0.5">
+              <span>Precio: ${fmtEur(p.precio)} · Com: ${fmtEur(comisionUnitaria(p))}</span>
+              <span>Conv.: ${fmtPct(p.conversiones / p.clics * 100)} · ROI: ${fmtROI(p.ingresos, p.inversion)}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+      const criterioPlataformas = document.getElementById('orden-plataformas').value;
+      const valorPlataforma = plataforma => {
+        if (criterioPlataformas === 'alcance') return plataforma.alcance;
+        if (criterioPlataformas === 'conversiones') return plataforma.conversiones;
+        if (criterioPlataformas === 'roi') return calcularROI(plataforma.ingresos, plataforma.inversion) ?? -Infinity;
+        return plataforma.ingresos;
+      };
+      const etiquetaPlataforma = plataforma => {
+        if (criterioPlataformas === 'alcance') return `${fmt(plataforma.alcance)} alcance`;
+        if (criterioPlataformas === 'conversiones') return `${fmt(plataforma.conversiones)} ventas`;
+        if (criterioPlataformas === 'roi') return fmtROI(plataforma.ingresos, plataforma.inversion);
+        return fmtEur(plataforma.ingresos);
+      };
+      const sortedPlat = [...DATA.plataformas].sort((a, b) => valorPlataforma(b) - valorPlataforma(a));
+    function renderActividad() {
+        `<li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white/5 flex items-center justify-center text-xs font-bold text-gray-400">${i + 1}</span> ${p.nombre} — <span class="text-violet-300">${etiquetaPlataforma(p)}</span></li>`
+      const maxInt = Math.max(...DATA.actividad.map(a => a.interacciones));
+      container.innerHTML = DATA.actividad.map(a => {
+        const pct = (a.interacciones / maxInt * 100);
+        const ratio = Math.round(a.interacciones / a.publicaciones);
+        return `
+          <div>
+            <div class="flex items-center justify-between text-xs mb-1">
+              <span class="flex items-center gap-1.5">
+                <span>${a.emoji}</span>
+                <span class="text-gray-200 font-medium">${a.tipo}</span>
+              </span>
+              <span class="text-white font-medium">${fmt(a.interacciones)} interac.</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill bg-gradient-to-r from-fuchsia-500 to-pink-400" style="width:${pct}%"></div>
+            </div>
+            <div class="flex justify-between text-xs text-gray-500 mt-0.5">
+              <span>${a.publicaciones} publicaciones</span>
+              <span>${fmt(ratio)} interac./pub</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // --- Tabla Productos ---
+    function renderTablaProductos() {
+      const tbody = document.getElementById('tabla-productos-body');
+      tbody.innerHTML = DATA.productos.map(p => {
+        const roi = calcularROI(p.ingresos, p.inversion);
+        return `
+          <tr class="border-b border-white/5 hover:bg-white/5">
+            <td class="py-2.5 pr-2 font-medium text-white">${p.nombre}</td>
+            <td class="py-2.5 px-2 text-right">${fmtEur(p.precio)}</td>
+            <td class="py-2.5 px-2 text-right text-emerald-300">${fmtEur(comisionUnitaria(p))}</td>
+            <td class="py-2.5 px-2 text-right">${fmt(p.conversiones)}</td>
+            <td class="py-2.5 px-2 text-right text-violet-300">${fmtEur(p.ingresos)}</td>
+            <td class="py-2.5 px-2 text-right"><span class="badge ${roi === null ? 'bg-gray-500/15 text-gray-300' : roi > 1.5 ? 'bg-emerald-500/15 text-emerald-300' : 'bg-amber-500/15 text-amber-300'}">${fmtROI(p.ingresos, p.inversion)}</span></td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // --- Tabla Plataformas ---
+    function renderTablaPlataformas() {
+      const tbody = document.getElementById('tabla-plataformas-body');
+      const maxComisiones = Math.max(...DATA.plataformas.map(p => p.ingresos));
+      tbody.innerHTML = DATA.plataformas.map(p => {
+        const esTop = p.ingresos === maxComisiones;
+        return `
+        <tr class="border-b border-white/5 hover:bg-white/5">
+          <td class="py-2.5 pr-2 font-medium text-white"><i class="${p.icono} text-sm mr-1.5"></i>${p.nombre}</td>
+          <td class="py-2.5 px-2 text-right">${fmt(p.seguidores)}</td>
+          <td class="py-2.5 px-2 text-right">${fmt(p.alcance)}</td>
+          <td class="py-2.5 px-2 text-right">${fmtPct(p.engagement)}</td>
+          <td class="py-2.5 px-2 text-right">${fmt(p.conversiones)}</td>
+          <td class="py-2.5 px-2 text-right">${esTop ? '<span class="badge bg-amber-500/15 text-amber-300">⭐ TOP</span>' : '—'}</td>
+        </tr>
+      `}).join('');
+    }
+
+    // --- Tabla Campañas ---
+    function renderTablaCampanas() {
+      const tbody = document.getElementById('tabla-campanas-body');
+      const colores = { 'Excelente': 'bg-emerald-500/15 text-emerald-300', 'Bueno': 'bg-blue-500/15 text-blue-300', 'Regular': 'bg-amber-500/15 text-amber-300' };
+      tbody.innerHTML = DATA.campanas.map(c => `
+        <tr class="border-b border-white/5 hover:bg-white/5">
+          <td class="py-2.5 pr-2 font-medium text-white">${c.nombre}</td>
+          <td class="py-2.5 px-2 text-gray-300">${c.fecha}</td>
+          <td class="py-2.5 px-2">${c.producto}</td>
+          <td class="py-2.5 px-2 text-right">${fmt(c.alcance)}</td>
+          <td class="py-2.5 px-2 text-right">${fmt(c.conversiones)}</td>
+          <td class="py-2.5 px-2 text-right"><span class="badge ${colores[c.rendimiento] || 'bg-gray-500/15 text-gray-300'}">${c.rendimiento}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    // --- Alertas ---
+    function renderAlertas() {
+      const container = document.getElementById('alertas-container');
+      document.getElementById('alertas-count').textContent = DATA.alertas.length + ' activas';
+      container.innerHTML = DATA.alertas.map(a => `
+        <div class="flex items-start gap-3 p-3 rounded-lg bg-white/5 border border-white/5 ${a.tipo === 'danger' ? 'alert-pulse' : ''}">
+          <i class="fas ${a.icono} ${a.color} mt-0.5"></i>
+          <div class="flex-1 min-w-0">
+            <p class="text-xs text-gray-300">${a.mensaje}</p>
+            <p class="text-xs text-gray-400 mt-1">Indicador: ${a.indicador} · Afectado: ${a.entidad}</p>
+            <p class="text-xs text-gray-500">Período de comparación: ${a.periodoComparado}</p>
+            <p class="text-xs text-gray-500 mt-0.5">${a.tipo === 'danger' ? '⚠️ Requiere atención' : a.tipo === 'warning' ? '🔍 Monitorizar' : '✅ Buena noticia'}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // --- Listados Rápidos ---
+    function renderListados() {
+      // TOP Productos por ingresos
+      const criterioProductos = document.getElementById('orden-productos').value;
+      const valorProducto = producto => {
+        if (criterioProductos === 'conversiones') return producto.conversiones;
+        if (criterioProductos === 'roi') return calcularROI(producto.ingresos, producto.inversion) ?? -Infinity;
+        return producto.ingresos;
+      };
+      const etiquetaProducto = producto => {
+        if (criterioProductos === 'conversiones') return `${fmt(producto.conversiones)} ventas`;
+        if (criterioProductos === 'roi') return fmtROI(producto.ingresos, producto.inversion);
+        return fmtEur(producto.ingresos);
+      };
+      const sortedProd = [...DATA.productos].sort((a, b) => valorProducto(b) - valorProducto(a));
+      document.getElementById('top-productos').innerHTML = sortedProd.map((p, i) =>
+        `<li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white/5 flex items-center justify-center text-xs font-bold text-gray-400">${i + 1}</span> ${p.nombre} — <span class="text-emerald-300">${etiquetaProducto(p)}</span></li>`
+      ).join('');
+
+      // TOP Plataformas por ingresos
+      const criterioPlataformas = document.getElementById('orden-plataformas').value;
+      const valorPlataforma = plataforma => {
+        if (criterioPlataformas === 'alcance') return plataforma.alcance;
+        if (criterioPlataformas === 'conversiones') return plataforma.conversiones;
+        if (criterioPlataformas === 'roi') return calcularROI(plataforma.ingresos, plataforma.inversion) ?? -Infinity;
+        return plataforma.ingresos;
+      };
+      const etiquetaPlataforma = plataforma => {
+        if (criterioPlataformas === 'alcance') return `${fmt(plataforma.alcance)} alcance`;
+        if (criterioPlataformas === 'conversiones') return `${fmt(plataforma.conversiones)} ventas`;
+        if (criterioPlataformas === 'roi') return fmtROI(plataforma.ingresos, plataforma.inversion);
+        return fmtEur(plataforma.ingresos);
+      };
+      const sortedPlat = [...DATA.plataformas].sort((a, b) => valorPlataforma(b) - valorPlataforma(a));
+      document.getElementById('top-plataformas').innerHTML = sortedPlat.map((p, i) =>
+        `<li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white/5 flex items-center justify-center text-xs font-bold text-gray-400">${i + 1}</span> ${p.nombre} — <span class="text-violet-300">${etiquetaPlataforma(p)}</span></li>`
+      ).join('');
+
+      // TOP Campañas
+      const criterioCampanas = document.getElementById('orden-campanas').value;
+      const comisionesCampana = campana => {
+        const producto = DATA.productos.find(item => item.nombre === campana.producto);
+        return producto ? comisionUnitaria(producto) * campana.conversiones : 0;
+      };
+      const valorCampana = campana => {
+        if (criterioCampanas === 'alcance') return campana.alcance;
+        if (criterioCampanas === 'comisiones') return comisionesCampana(campana);
+        return campana.conversiones;
+      };
+      const etiquetaCampana = campana => {
+        if (criterioCampanas === 'alcance') return `${fmt(campana.alcance)} alcance`;
+        if (criterioCampanas === 'comisiones') return fmtEur(comisionesCampana(campana));
+        return `${fmt(campana.conversiones)} ventas`;
+      };
+      const sortedCamp = [...DATA.campanas].sort((a, b) => valorCampana(b) - valorCampana(a)).slice(0, 3);
+      document.getElementById('top-campanas').innerHTML = sortedCamp.map((c, i) =>
+        `<li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white/5 flex items-center justify-center text-xs font-bold text-gray-400">${i + 1}</span> ${c.nombre} — <span class="text-white">${etiquetaCampana(c)}</span></li>`
+      ).join('');
+
+      const menorConversionPlataforma = DATA.plataformas
+        .filter(plataforma => plataforma.clics > 0)
+        .reduce((menor, plataforma) => plataforma.conversiones / plataforma.clics < menor.conversiones / menor.clics ? plataforma : menor);
+      const menorConversionProducto = DATA.productos
+        .filter(producto => producto.clics > 0)
+        .reduce((menor, producto) => producto.conversiones / producto.clics < menor.conversiones / menor.clics ? producto : menor);
+      const menorEngagementFormato = DATA.actividad
+        .filter(formato => formato.publicaciones > 0)
+        .reduce((menor, formato) => formato.interacciones / formato.publicaciones < menor.interacciones / menor.publicaciones ? formato : menor);
+      const menorConversionCampana = DATA.campanas
+        .filter(campana => campana.alcance > 0)
+        .reduce((menor, campana) => campana.conversiones / campana.alcance < menor.conversiones / menor.alcance ? campana : menor);
+      const recomendaciones = [
+        `${menorConversionPlataforma.nombre} tiene la menor conversión clic-venta (${fmtPct(menorConversionPlataforma.conversiones / menorConversionPlataforma.clics * 100)}); prueba una CTA o ubicación del enlace distinta.`,
+        `${menorConversionProducto.nombre} convierte el ${fmtPct(menorConversionProducto.conversiones / menorConversionProducto.clics * 100)} de sus clics; revisa el contenido de esa promoción.`,
+        `${menorEngagementFormato.tipo} registra ${fmt(Math.round(menorEngagementFormato.interacciones / menorEngagementFormato.publicaciones))} interacciones por publicación; contrástalo con formatos de mayor respuesta.`,
+        `${menorConversionCampana.nombre} convierte el ${fmtPct(menorConversionCampana.conversiones / menorConversionCampana.alcance * 100)} de su alcance; revisa audiencia y mensaje de campaña.`
+      ];
+      const oportunidades = document.getElementById('oportunidades');
+      oportunidades.replaceChildren(...recomendaciones.map(mensaje => {
+        const item = document.createElement('li');
+        item.className = 'flex items-start gap-2 text-xs';
+        const icono = document.createElement('i');
+        icono.className = 'fas fa-arrow-up text-emerald-400 mt-0.5';
+        icono.setAttribute('aria-hidden', 'true');
+        const texto = document.createElement('span');
+        texto.textContent = mensaje;
+        item.append(icono, texto);
+        return item;
+      }));
+    }
+
+    // --- TABS ---
+    function initTabs() {
+      const tabs = [...document.querySelectorAll('.tab-btn')];
+      const activarPestana = (seleccionada, enfocar = false) => {
+        tabs.forEach(tab => {
+          const activa = tab === seleccionada;
+          tab.classList.toggle('tab-active', activa);
+          tab.setAttribute('aria-selected', String(activa));
+          tab.tabIndex = activa ? 0 : -1;
+          document.getElementById(tab.getAttribute('data-tab')).classList.toggle('hidden', !activa);
+        });
+        if (enfocar) seleccionada.focus();
+      };
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => activarPestana(tab));
+        tab.addEventListener('keydown', event => {
+          let siguiente = index;
+          if (event.key === 'ArrowRight') siguiente = (index + 1) % tabs.length;
+          else if (event.key === 'ArrowLeft') siguiente = (index - 1 + tabs.length) % tabs.length;
+          else if (event.key === 'Home') siguiente = 0;
+          else if (event.key === 'End') siguiente = tabs.length - 1;
+          else return;
+
+          event.preventDefault();
+          activarPestana(tabs[siguiente], true);
+        });
+      });
+    }
+
+    // ================================================================
+    // INICIALIZAR
+    // ================================================================
+    function renderPeriodo() {
+      const selector = document.getElementById('periodo-selector');
+      selector.value = DATA.periodo.id;
+      document.querySelectorAll('[data-periodo-label]').forEach(etiqueta => {
+        etiqueta.textContent = DATA.periodo.etiqueta;
+      });
+    }
+
+    function init() {
+      renderPeriodo();
+      renderKPIs();
+      renderComparaciones();
+      renderFunnel();
+      renderPlataformas();
+      renderProductos();
+      renderActividad();
+      renderTablaProductos();
+      renderTablaPlataformas();
+      renderTablaCampanas();
+      renderAlertas();
+      renderListados();
+      document.getElementById('orden-productos').addEventListener('change', renderListados);
+      document.getElementById('orden-plataformas').addEventListener('change', renderListados);
+      document.getElementById('orden-campanas').addEventListener('change', renderListados);
+      initTabs();
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+
+  <script>
+    /** @typedef {{ amount: number, currency: 'EUR', trend: number }} RevenueMetric */
+    /** @typedef {{ amount: number, currency: 'EUR', platformFeePercentage: number }} EarningsMetric */
+    /** @typedef {{ percentage: number, trend: number }} PercentageMetric */
+    /** @typedef {{ platform: string, amount: number, percentage: number }} ReachMetric */
+    /** @typedef {{ name: string, avgPrice: number, revenue: number, convRate: number }} AffiliateProduct */
+    /** @typedef {{ brandPartner: string, campaign: string, status: 'Active'|'Paused', followers: string, revenue: number, myPayout: number, roi: string }} BrandCollaboration */
+    /** @typedef {{ growth: number, clicks?: string, shares?: string, views?: string, completion?: string, avgWatchTime?: string, ctr?: string }} SocialPlatformMetrics */
+    /** @typedef {{ userProfile: { appTitle: string, userName: string, role: string }, kpis: { totalRevenue: RevenueMetric, myEarnings: EarningsMetric, audienceImpact: PercentageMetric, avgEngagement: PercentageMetric }, contentReach: ReachMetric[], topAffiliateProducts: AffiliateProduct[], recentBrandCollaborations: BrandCollaboration[], socialMediaMetrics: { instagram: SocialPlatformMetrics, tikTok: SocialPlatformMetrics, youTube: SocialPlatformMetrics } }} StudioDashboardData */
+
+    /** @type {StudioDashboardData} */
+    const studioData = {
+      userProfile: {
+        appTitle: "Sarah's Studio",
+        userName: 'John Smith',
+        role: 'Content Creator'
+      },
+      kpis: {
+        totalRevenue: { amount: 42500, currency: 'EUR', trend: 12.5 },
+        myEarnings: { amount: 36125, currency: 'EUR', platformFeePercentage: 15 },
+        audienceImpact: { percentage: 4.82, trend: -0.4 },
+        avgEngagement: { percentage: 7.2, trend: 2.1 }
+      },
+      contentReach: [
+        { platform: 'Instagram', amount: 22100, percentage: 52 },
+        { platform: 'TikTok', amount: 14450, percentage: 34 },
+        { platform: 'YouTube', amount: 5950, percentage: 14 }
+      ],
+      topAffiliateProducts: [
+        { name: 'Product A (Skincare)', avgPrice: 50, revenue: 15200, convRate: 5.2 },
+        { name: 'Product B (Apparel)', avgPrice: 120, revenue: 18500, convRate: 4.1 },
+        { name: 'Product C (Accessory)', avgPrice: 80, revenue: 8800, convRate: 3.8 }
+      ],
+      recentBrandCollaborations: [
+        { brandPartner: 'Luxe Skincare', campaign: 'Summer Campaign', status: 'Active', followers: '245k', revenue: 12400, myPayout: 18600, roi: '6.2x' },
+        { brandPartner: 'Urban Apparel', campaign: 'Fall Collection', status: 'Active', followers: '82k', revenue: 4200, myPayout: 630, roi: '4.8x' },
+        { brandPartner: 'Tech Gadgets', campaign: 'Review Video', status: 'Paused', followers: '1.2M', revenue: 21900, myPayout: 3285, roi: '5.4x' }
+      ],
+      socialMediaMetrics: {
+        instagram: { growth: 18, clicks: '45.2k', shares: '1.2k' },
+        tikTok: { growth: 32, views: '890k', completion: '42%' },
+        youTube: { growth: -2, avgWatchTime: '4m 12s', ctr: '2.8%' }
+      }
+    };
+
+    const studioCurrency = new Intl.NumberFormat('es-ES', {
+      style: 'currency',
+      currency: 'EUR',
+      minimumFractionDigits: 2
+    });
+    const studioNumber = new Intl.NumberFormat('es-ES');
+    const formatStudioTrend = value => `${value > 0 ? '+' : ''}${value.toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 2 })}%`;
+
+    function renderStudioDashboard() {
+      const { userProfile, kpis, contentReach, topAffiliateProducts, recentBrandCollaborations, socialMediaMetrics } = studioData;
+      const header = document.querySelector('header');
+      header.querySelector('h1').textContent = userProfile.appTitle;
+      header.querySelector('p').textContent = `${userProfile.userName} · ${userProfile.role}`;
+
+      const trend = (value, label) => {
+        const positive = value > 0;
+        const neutral = value === 0;
+        const tone = neutral ? 'text-gray-400' : positive ? 'text-emerald-400' : 'text-rose-400';
+        const direction = neutral ? 'Sin variación' : positive ? 'En alza' : 'A la baja';
+        return `<p class="mt-2 text-xs ${tone}" aria-label="${direction}: ${formatStudioTrend(value)} respecto al período anterior">${formatStudioTrend(value)} · ${direction}</p>`;
+      };
+      const kpiCard = (title, value, icon, iconTone, trendMarkup, detail = '') => `
+        <article class="glass-card rounded-xl p-4 sm:p-5 min-w-0">
+          <div class="flex items-start justify-between gap-3">
+            <h2 class="text-xs font-semibold uppercase tracking-wider text-gray-400">${title}</h2>
+            <span class="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-white/5 ${iconTone}" aria-hidden="true"><i class="fas ${icon}"></i></span>
+          </div>
+          <p class="mt-3 text-2xl font-bold text-white">${value}</p>
+          ${detail ? `<p class="mt-1 text-xs text-gray-400">${detail}</p>` : ''}
+          ${trendMarkup}
+        </article>`;
+      const socials = [
+        { name: 'Instagram', icon: 'fa-instagram', metrics: socialMediaMetrics.instagram, details: [['Clicks', socialMediaMetrics.instagram.clicks], ['Shares', socialMediaMetrics.instagram.shares]] },
+        { name: 'TikTok', icon: 'fa-tiktok', metrics: socialMediaMetrics.tikTok, details: [['Views', socialMediaMetrics.tikTok.views], ['Completion', socialMediaMetrics.tikTok.completion]] },
+        { name: 'YouTube', icon: 'fa-youtube', metrics: socialMediaMetrics.youTube, details: [['Avg. watch time', socialMediaMetrics.youTube.avgWatchTime], ['CTR', socialMediaMetrics.youTube.ctr]] }
+      ];
+
+      document.querySelector('main').innerHTML = `
+        <section aria-labelledby="overview-title">
+          <div class="mb-4 flex items-end justify-between gap-4">
+            <div><h2 id="overview-title" class="text-lg font-semibold text-white">Performance overview</h2><p class="mt-1 text-xs text-gray-400">Creator monetization · EUR</p></div>
+            <span class="text-xs text-gray-500">Mock data</span>
+          </div>
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            ${kpiCard('Total Revenue', studioCurrency.format(kpis.totalRevenue.amount), 'fa-wallet', 'text-emerald-300', trend(kpis.totalRevenue.trend))}
+            ${kpiCard('My Earnings', studioCurrency.format(kpis.myEarnings.amount), 'fa-coins', 'text-cyan-300', '', `${kpis.myEarnings.platformFeePercentage}% platform fee`)}
+            ${kpiCard('Audience Impact', `${kpis.audienceImpact.percentage.toLocaleString('es-ES', { minimumFractionDigits: 2 })}%`, 'fa-bullseye', 'text-amber-300', trend(kpis.audienceImpact.trend))}
+            ${kpiCard('Avg. Engagement', `${kpis.avgEngagement.percentage.toLocaleString('es-ES', { minimumFractionDigits: 1 })}%`, 'fa-heart', 'text-rose-300', trend(kpis.avgEngagement.trend))}
+          </div>
+        </section>
+
+        <section class="grid grid-cols-1 gap-4 xl:grid-cols-2" aria-label="Audience and affiliate products">
+          <article class="glass-card rounded-xl p-4 sm:p-5">
+            <div class="mb-5"><h2 class="text-sm font-semibold text-white">My Content Reach</h2><p class="mt-1 text-xs text-gray-400">Reach by social platform</p></div>
+            <div class="space-y-5">
+              ${contentReach.map(item => `
+                <div>
+                  <div class="mb-2 flex items-center justify-between gap-3 text-sm"><span class="font-medium text-gray-200">${item.platform}</span><span class="text-gray-300">${studioNumber.format(item.amount)} <span class="text-gray-500">· ${item.percentage}%</span></span></div>
+                  <div class="h-2 overflow-hidden rounded-full bg-white/10" role="progressbar" aria-label="${item.platform} content reach" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${item.percentage}"><div class="h-full rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400" style="width:${item.percentage}%"></div></div>
+                </div>`).join('')}
+            </div>
+          </article>
+
+          <article class="glass-card rounded-xl p-4 sm:p-5">
+            <div class="mb-4"><h2 class="text-sm font-semibold text-white">Top Affiliate Products</h2><p class="mt-1 text-xs text-gray-400">Revenue and conversion performance</p></div>
+            <div class="overflow-x-auto">
+              <table class="w-full min-w-[34rem] text-sm">
+                <thead><tr class="border-b border-white/10 text-left text-xs uppercase tracking-wider text-gray-500"><th class="py-3 pr-3">Product</th><th class="px-3 py-3 text-right">Avg. price</th><th class="px-3 py-3 text-right">Revenue</th><th class="py-3 pl-3 text-right">Conv. rate</th></tr></thead>
+                <tbody>${topAffiliateProducts.map(product => `<tr class="border-b border-white/5 last:border-0"><td class="py-3 pr-3 font-medium text-gray-200">${product.name}</td><td class="px-3 py-3 text-right text-gray-300">${studioCurrency.format(product.avgPrice)}</td><td class="px-3 py-3 text-right text-white">${studioCurrency.format(product.revenue)}</td><td class="py-3 pl-3 text-right text-emerald-300">${product.convRate.toLocaleString('es-ES', { minimumFractionDigits: 1 })}%</td></tr>`).join('')}</tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section aria-labelledby="collaborations-title">
+          <article class="glass-card rounded-xl p-4 sm:p-5">
+            <div class="mb-4"><h2 id="collaborations-title" class="text-sm font-semibold text-white">Recent Brand Collaborations</h2><p class="mt-1 text-xs text-gray-400">Campaign status and payout overview</p></div>
+            <div class="overflow-x-auto">
+              <table class="w-full min-w-[48rem] text-sm">
+                <thead><tr class="border-b border-white/10 text-left text-xs uppercase tracking-wider text-gray-500"><th class="py-3 pr-3">Brand partner</th><th class="px-3 py-3">Campaign</th><th class="px-3 py-3">Status</th><th class="px-3 py-3 text-right">Followers</th><th class="px-3 py-3 text-right">Revenue</th><th class="px-3 py-3 text-right">My payout</th><th class="py-3 pl-3 text-right">ROI</th></tr></thead>
+                <tbody>${recentBrandCollaborations.map(campaign => {
+                  const active = campaign.status === 'Active';
+                  const statusLabel = active ? 'Activa' : 'Pausada';
+                  const statusTone = active ? 'bg-emerald-500/15 text-emerald-300' : 'bg-amber-500/15 text-amber-300';
+                  return `<tr class="border-b border-white/5 last:border-0"><td class="py-3 pr-3 font-medium text-gray-200">${campaign.brandPartner}</td><td class="px-3 py-3 text-gray-300">${campaign.campaign}</td><td class="px-3 py-3"><span class="rounded-full px-2 py-1 text-xs font-medium ${statusTone}">${statusLabel}</span></td><td class="px-3 py-3 text-right text-gray-300">${campaign.followers}</td><td class="px-3 py-3 text-right text-gray-200">${studioCurrency.format(campaign.revenue)}</td><td class="px-3 py-3 text-right text-white">${studioCurrency.format(campaign.myPayout)}</td><td class="py-3 pl-3 text-right text-emerald-300">${campaign.roi}</td></tr>`;
+                }).join('')}</tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section aria-labelledby="social-metrics-title">
+          <div class="mb-4"><h2 id="social-metrics-title" class="text-sm font-semibold text-white">Social Media Metrics</h2><p class="mt-1 text-xs text-gray-400">Channel-specific audience signals</p></div>
+          <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
+            ${socials.map(social => `
+              <article class="glass-card rounded-xl p-4">
+                <div class="mb-4 flex items-center justify-between"><h3 class="text-sm font-semibold text-white"><i class="fab ${social.icon} mr-2 text-gray-300" aria-hidden="true"></i>${social.name}</h3><span class="text-sm font-semibold ${social.metrics.growth >= 0 ? 'text-emerald-300' : 'text-rose-300'}">${formatStudioTrend(social.metrics.growth)}</span></div>
+                <dl class="grid grid-cols-2 gap-3">${social.details.map(([label, value]) => `<div class="rounded-lg bg-white/[0.04] p-3"><dt class="text-xs text-gray-500">${label}</dt><dd class="mt-1 text-sm font-semibold text-gray-200">${value}</dd></div>`).join('')}</dl>
+              </article>`).join('')}
+          </div>
+        </section>
+      `;
+    }
+
+    document.addEventListener('DOMContentLoaded', renderStudioDashboard);
+  </script>
+
+</body>
+</html>

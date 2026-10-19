@@ -1,41 +1,60 @@
-# HTML Hello
+# 📊 Dashboard de Rendimiento — Influencer & Afiliación
 
-The most basic boilerplate for any 4Geeks Academy student, start your very first website from scratch.
+> **Instrucción para Copilot:** utiliza únicamente HTML y Tailwind CSS v4. No añadas React, Vue ni otros frameworks, no uses `cdn.tailwindcss.com` y no incluyas directivas ni configuración de Tailwind CSS v3.
 
-> There is a video tutorial on [how to use this template to create your very first website here](https://youtu.be/dfbDCMu_p-0).
+Dashboard interactivo para seguimiento de métricas de redes sociales y ventas de afiliación, diseñado para una influencer con presencia en múltiples plataformas (Instagram, TikTok, YouTube).
 
-## What to do next?
+## 🚀 Tecnologías
 
-Create an `index.html` file with the [basic HTML structure](http://4geeks.com/lesson/what-is-html-learn-html#page-structure) and see it live by running a web-server using the following command:
+- **HTML5** — Estructura semántica
+- **Tailwind CSS v4** — Utilidades cargadas mediante `@tailwindcss/browser@4`
+- **JavaScript vanilla** — Interactividad ligera integrada en el HTML
+- **Flask (Python)** — Servidor de desarrollo
+
+> No se usan frameworks como React, Vue, Angular o Svelte. El proyecto no utiliza el CDN `cdn.tailwindcss.com` ni configuración de Tailwind v3.
+
+## 📋 Contenido
+
+| Archivo | Descripción |
+|---|---|
+| `index.html` | Dashboard principal con 3 bloques visuales (KPIs, Drivers, Detalles) |
+| `PROPUESTA.md` | Propuesta formal del proyecto |
+| `server.py` | Servidor Flask para desarrollo |
+
+## 🏗️ Estructura del Dashboard
+
+### Bloque Superior — KPIs Principales (Visión Ejecutiva)
+- Volumen (ventas, inscripciones, usuarios activos, impresiones)
+- Ingresos (revenue/comisiones, ticket medio)
+- Engagement & Rendimiento (tasa engagement, CTR, conversión)
+- Eficiencia & Retorno (ROI, coste por resultado)
+
+### Bloque Intermedio — Drivers del Resultado (Diagnóstico)
+- Funnel de Conversión (Alcance → Clics → Ventas)
+- Rendimiento por Plataforma (Instagram vs TikTok vs YouTube)
+- Rendimiento por Producto (Productos A, B, C)
+- Actividad vs. Engagement (publicaciones vs interacciones)
+
+### Bloque Inferior — Detalles Operativos (Acción)
+- Tablas detalle (Productos, Plataformas, Campañas)
+- Sistema de Alertas Automáticas
+- Listados TOP (Productos, Plataformas, Campañas, Oportunidades)
+
+## 🚀 Cómo ejecutar
 
 ```bash
-$ pip3 install flask && python3 server.py
+pip3 install flask && python3 server.py
 ```
 
-- You can create as many HTML files as you want.
-- You can also create CSS files and import them into your website using a `<link>` tag placed between the `<head></head>` tags, like this:
+Luego abre `http://localhost:3000` en tu navegador.
 
-```html
-<head>
-  ...
-  <link rel="stylesheet" type="text/css" href="styles.css">
-  ...
-</head>
-```
+## 🎯 Modelo de Negocio
 
-- If you want to use Tailwind CSS, add it optionally via the official Tailwind CSS v4 CDN inside the same `<head>`:
+- Comisión fija del **15%** por venta completada
+- **Producto A:** 50 € → 7,50 € comisión
+- **Producto B:** 120 € → 18,00 € comisión
+- **Producto C:** 80 € → 12,00 € comisión
 
-```html
-<head>
-  ...
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <link rel="stylesheet" type="text/css" href="styles.css">
-  ...
-</head>
-```
+---
 
-### Contributors
-
-This template was built as part of the [Full Stack Developer course](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer) at [4Geeks Academy Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) by [Alejandro Sanchez](https://twitter.com/alesanchezr) and [many other contributors](https://github.com/4GeeksAcademy/html-hello/graphs/contributors).
-
-You can find other templates and resources like this at the [school's GitHub page](https://github.com/4geeksacademy/).
+*Dashboard desarrollado con ❤️ · HTML + Tailwind CSS v4 + JavaScript vanilla*
